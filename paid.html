@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mark invoice as paid — Invoice Follow-Up by Papagye</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAFAF7;--ink:#1C2321;--ledger:#2B4C7E;--stamp:#C0392B;--mut:#6E736C;--line:#D9DAD2;--card:#FFF}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:36px;max-width:440px;text-align:center}
+.logo{font-family:'Fraunces',serif;font-weight:700;margin-bottom:22px}
+.logo span{color:var(--ledger)}
+h1{font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:10px}
+p{color:var(--mut);font-size:.95rem}
+button{margin-top:22px;background:var(--ledger);color:#fff;border:0;padding:13px 26px;border-radius:3px;font:inherit;font-weight:600;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+.stamp{display:none;margin:18px auto 6px;font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--stamp);border:2px solid var(--stamp);border-radius:3px;padding:4px 14px;transform:rotate(-7deg);letter-spacing:.12em;width:max-content}
+.err{display:none;margin-top:16px;background:#F7E9E7;color:var(--stamp);padding:10px 12px;border-radius:3px;font-size:.9rem}
+a{color:var(--ledger)}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">Invoice Follow-Up <span>by Papagye</span></div>
+  <h1 id="title">Mark this invoice as paid?</h1>
+  <p id="desc">All reminders to your client will stop immediately.</p>
+  <div class="stamp" id="stamp">PAID</div>
+  <button id="btn">Yes, mark as paid</button>
+  <div class="err" id="err"></div>
+</div>
+<script>
+const WEBHOOK='https://shubham-wedding-ai.app.n8n.cloud/webhook/papagye-ifb';
+const inv=new URLSearchParams(location.search).get('inv');
+const btn=document.getElementById('btn'),err=document.getElementById('err'),
+      title=document.getElementById('title'),desc=document.getElementById('desc'),stamp=document.getElementById('stamp');
+if(!inv){title.textContent='Link incomplete';desc.textContent='Open the mark-as-paid link from your tracking email again.';btn.style.display='none';}
+btn.addEventListener('click', async ()=>{
+  btn.disabled=true;btn.textContent='Marking…';err.style.display='none';
+  try{
+    const r=await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'mark_paid_link',invoice_id:inv})});
+    const d=await r.json().catch(()=>({}));
+    if(d&&d.ok){
+      title.textContent='Invoice '+(d.invoice_number||'')+' marked as paid';
+      desc.textContent=d.already?'This invoice was already marked paid — no reminders are going out.':'Reminders stopped. A confirmation email is on its way. Congrats on getting paid!';
+      stamp.style.display='block';btn.style.display='none';
+    }else{err.style.display='block';err.textContent=(d&&d.error)||'Could not mark as paid. Try again in a minute.';btn.disabled=false;btn.textContent='Yes, mark as paid';}
+  }catch(e){err.style.display='block';err.textContent='Could not reach the server. Try again in a minute.';btn.disabled=false;btn.textContent='Yes, mark as paid';}
+});
+</script>
+</body>
+</html>
