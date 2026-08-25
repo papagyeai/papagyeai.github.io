@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://papagye.com/sitemap.xml
