@@ -92,5 +92,16 @@ f.addEventListener('submit', async (e) => {
   b.disabled=false; b.textContent='Track this invoice';
 });
 </script>
+<script>
+(function(){
+  var W='https://shubham-wedding-ai.app.n8n.cloud/webhook/papagye-ifb';
+  var s=sessionStorage.getItem('pg_s'); if(!s){s=Math.random().toString(36).slice(2,10);sessionStorage.setItem('pg_s',s);}
+  var t=/[?&]test=1/.test(location.search)||localStorage.getItem('pg_test')==='1'; if(/[?&]test=1/.test(location.search))localStorage.setItem('pg_test','1');
+  function ev(e,m){try{navigator.sendBeacon?navigator.sendBeacon(W,new Blob([JSON.stringify({action:'event',page:location.pathname,event:e,ref:document.referrer||'',session:s,is_test:t,meta:m||{}})],{type:'application/json'})):fetch(W,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'event',page:location.pathname,event:e,ref:document.referrer||'',session:s,is_test:t,meta:m||{}})});}catch(x){}}
+  window.pgTrack=ev; ev('pageview');
+  document.addEventListener('click',function(c){var a=c.target.closest('a[href*="#start"],button[type="submit"]');if(a)ev('cta',{t:(a.textContent||'').slice(0,40)});});
+})();
+</script>
+
 </body>
 </html>
