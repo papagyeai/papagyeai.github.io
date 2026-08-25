@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add an invoice — Invoice Follow-Up by Papagye</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAFAF7;--ink:#1C2321;--ledger:#2B4C7E;--stamp:#C0392B;--mut:#6E736C;--line:#D9DAD2;--card:#FFF}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px 60px}
+header{padding:26px 0}
+.logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem}
+.logo a{color:inherit;text-decoration:none}
+.logo span{color:var(--ledger)}
+h1{font-family:'Fraunces',serif;font-weight:700;font-size:1.7rem;margin:26px 0 8px}
+p.sub{color:var(--mut);font-size:.95rem;margin-bottom:26px}
+form{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:26px}
+label{display:block;font-weight:600;font-size:.9rem;margin:16px 0 6px}
+label:first-of-type{margin-top:0}
+input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:3px;font:inherit;background:var(--paper)}
+input:focus-visible{outline:2px solid var(--ledger);outline-offset:1px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+button{margin-top:22px;width:100%;background:var(--ledger);color:#fff;border:0;padding:13px;border-radius:3px;font:inherit;font-weight:600;cursor:pointer}
+button:hover{background:#233F69}
+button:disabled{opacity:.6;cursor:wait}
+.msg{margin-top:14px;font-size:.92rem;display:none;padding:10px 12px;border-radius:3px}
+.msg.ok{display:block;background:#EAF2EA;color:#25552B}
+.msg.err{display:block;background:#F7E9E7;color:var(--stamp)}
+.fine{font-size:.85rem;color:var(--mut);margin-top:18px}
+@media(max-width:480px){.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="logo"><a href="index.html">Invoice Follow-Up <span>by Papagye</span></a></div></header>
+<h1>Add an invoice to track</h1>
+<p class="sub">Use the same email you registered with. Reminders start on the due date — never before.</p>
+<form id="invform" novalidate>
+  <label for="email">Your registered email</label>
+  <input id="email" type="email" required placeholder="you@example.com">
+  <label for="client_name">Client name</label>
+  <input id="client_name" type="text" placeholder="Acme Studios">
+  <label for="client_email">Client email</label>
+  <input id="client_email" type="email" required placeholder="accounts@client.com">
+  <div class="two">
+    <div>
+      <label for="invoice_number">Invoice number</label>
+      <input id="invoice_number" type="text" required placeholder="INV-014">
+    </div>
+    <div>
+      <label for="amount_inr">Amount (₹)</label>
+      <input id="amount_inr" type="number" min="1" required placeholder="42000">
+    </div>
+  </div>
+  <label for="due_date">Due date</label>
+  <input id="due_date" type="date" required>
+  <button type="submit" id="invbtn">Track this invoice</button>
+  <div class="msg" id="invmsg" role="status"></div>
+</form>
+<p class="fine">Invoice paid? Just reply "PAID [invoice number]" to any of our emails and the reminders stop.</p>
+</div>
+<script>
+const WEBHOOK = 'https://shubham-wedding-ai.app.n8n.cloud/webhook/papagye-ifb';
+const f = document.getElementById('invform'), b = document.getElementById('invbtn'), m = document.getElementById('invmsg');
+f.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  m.className='msg';
+  const p = {
+    action:'add_invoice',
+    email: document.getElementById('email').value.trim(),
+    client_name: document.getElementById('client_name').value.trim(),
+    client_email: document.getElementById('client_email').value.trim(),
+    invoice_number: document.getElementById('invoice_number').value.trim(),
+    amount_inr: Number(document.getElementById('amount_inr').value),
+    due_date: document.getElementById('due_date').value
+  };
+  if(!p.email.includes('@')||!p.client_email.includes('@')||!p.invoice_number||!p.amount_inr||!p.due_date){
+    m.className='msg err'; m.textContent='Fill every field — client email, invoice number, amount and due date are all needed.'; return;
+  }
+  b.disabled=true; b.textContent='Adding…';
+  try{
+    const r = await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
+    const d = await r.json().catch(()=>({}));
+    if(d && d.ok){ m.className='msg ok'; m.textContent='Invoice tracked. You\'ll get a confirmation email; your client hears from us only from the due date.'; f.reset(); }
+    else { m.className='msg err'; m.textContent=(d&&d.error)?d.error:'Could not add the invoice. Check your registered email and try again.'; }
+  }catch(err){ m.className='msg err'; m.textContent='Could not reach the server. Try again in a minute.'; }
+  b.disabled=false; b.textContent='Track this invoice';
+});
+</script>
+</body>
+</html>

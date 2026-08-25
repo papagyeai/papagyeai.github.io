@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Follow-Up by Papagye — polite, automatic payment reminders</title>
+<meta name="description" content="Add an unpaid invoice once. We remind your client on the due date, day 7 and day 14 — politely, from a neutral address, with replies going straight to you. Built for Indian freelancers. ₹199/month, 7-day free trial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFAF7; --ink:#1C2321; --ledger:#2B4C7E; --stamp:#C0392B;
+  --mut:#6E736C; --line:#D9DAD2; --card:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;font-size:16px}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header{padding:26px 0;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;letter-spacing:.01em}
+.logo span{color:var(--ledger)}
+header a.cta{font-size:.9rem;font-weight:600;color:var(--ledger);text-decoration:none;border:1.5px solid var(--ledger);padding:8px 16px;border-radius:3px}
+header a.cta:hover,header a.cta:focus-visible{background:var(--ledger);color:#fff}
+.hero{padding:64px 0 40px}
+.hero h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.1rem,5.5vw,3.4rem);line-height:1.12;max-width:16ch}
+.hero h1 em{font-style:normal;color:var(--ledger)}
+.hero p.sub{margin-top:18px;max-width:52ch;color:var(--mut);font-size:1.05rem}
+/* signature: the ledger row */
+.ledger{margin:48px 0 8px;background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.ledger .head{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr .8fr;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);border-bottom:1px solid var(--line);padding:10px 16px;gap:8px}
+.ledger .row{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr .8fr;padding:16px;gap:8px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:.88rem;position:relative}
+.ledger .row .amt{font-weight:500}
+.step{display:flex;flex-direction:column;gap:2px}
+.step b{font-weight:500;color:var(--ledger);font-size:.8rem}
+.step small{color:var(--mut);font-family:'Inter',sans-serif;font-size:.75rem}
+.stamp{justify-self:end;font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--stamp);border:2px solid var(--stamp);border-radius:3px;padding:3px 10px;transform:rotate(-7deg);opacity:0;letter-spacing:.12em;font-size:.85rem;animation:stamp .5s .9s cubic-bezier(.2,1.6,.4,1) forwards}
+@keyframes stamp{from{opacity:0;transform:rotate(-7deg) scale(2.2)}to{opacity:1;transform:rotate(-7deg) scale(1)}}
+@media(prefers-reduced-motion:reduce){.stamp{animation:none;opacity:1}}
+.ledger-cap{font-size:.8rem;color:var(--mut);margin-bottom:56px}
+section{padding:44px 0;border-top:1px solid var(--line)}
+h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.6rem;margin-bottom:20px}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.how div p{color:var(--mut);font-size:.93rem;margin-top:6px}
+.how b{font-weight:600}
+.price-table{border:1px solid var(--line);border-radius:4px;background:var(--card)}
+.price-row{display:flex;justify-content:space-between;align-items:baseline;padding:18px 20px;gap:12px}
+.price-row+.price-row{border-top:1px dashed var(--line)}
+.price-row .name{font-weight:600}
+.price-row .desc{color:var(--mut);font-size:.9rem;flex:1;margin-left:14px}
+.price-row .amt{font-family:'IBM Plex Mono',monospace;font-weight:500;white-space:nowrap}
+.trial-note{margin-top:12px;font-size:.9rem;color:var(--mut)}
+form{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:28px;max-width:460px}
+label{display:block;font-weight:600;font-size:.9rem;margin:16px 0 6px}
+label:first-of-type{margin-top:0}
+input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:3px;font:inherit;background:var(--paper)}
+input:focus-visible{outline:2px solid var(--ledger);outline-offset:1px}
+button{margin-top:22px;width:100%;background:var(--ledger);color:#fff;border:0;padding:13px;border-radius:3px;font:inherit;font-weight:600;cursor:pointer}
+button:hover{background:#233F69}
+button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+button:disabled{opacity:.6;cursor:wait}
+.msg{margin-top:14px;font-size:.92rem;display:none;padding:10px 12px;border-radius:3px}
+.msg.ok{display:block;background:#EAF2EA;color:#25552B}
+.msg.err{display:block;background:#F7E9E7;color:var(--stamp)}
+.fine{font-size:.85rem;color:var(--mut);margin-top:18px;max-width:60ch}
+footer{padding:36px 0 48px;color:var(--mut);font-size:.85rem;border-top:1px solid var(--line);margin-top:40px}
+@media(max-width:640px){
+ .how{grid-template-columns:1fr}
+ .ledger .head{display:none}
+ .ledger .row{grid-template-columns:1fr 1fr;row-gap:14px}
+ .stamp{justify-self:start}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="logo">Invoice Follow-Up <span>by Papagye</span></div>
+  <a class="cta" href="#start">Start free trial</a>
+</header>
+
+<div class="hero">
+  <h1>Your unpaid invoices, chased <em>politely</em> — while you keep working.</h1>
+  <p class="sub">Add an invoice once. We email your client a gentle reminder on the due date, a firmer one on day 7, and a final notice on day 14. Reminders come from a neutral address, and every reply goes straight to your inbox — so you never have to be the awkward one.</p>
+</div>
+
+<div class="ledger" aria-label="Example of how one invoice is followed up">
+  <div class="head"><span>Invoice</span><span>Day 0</span><span>Day 7</span><span>Day 14</span><span>Result</span></div>
+  <div class="row">
+    <span class="amt">INV-014 · ₹42,000</span>
+    <span class="step"><b>Gentle</b><small>due-date nudge</small></span>
+    <span class="step"><b>Firm</b><small>status request</small></span>
+    <span class="step"><b>Final</b><small>notice</small></span>
+    <span class="stamp">PAID</span>
+  </div>
+</div>
+<p class="ledger-cap">The three-step ladder above is exactly what your client receives. Mark it paid any time and the reminders stop.</p>
+
+<section>
+  <h2>How it works</h2>
+  <div class="how">
+    <div><b>1. Add the invoice</b><p>Client email, amount, due date. Takes thirty seconds. No app to install, no accounting software to connect.</p></div>
+    <div><b>2. We follow up</b><p>Polite, professionally-worded reminders go out automatically on day 0, 7 and 14 after the due date. Nothing is sent before an invoice is due.</p></div>
+    <div><b>3. You get the reply</b><p>Every client reply lands in your own inbox. Payment received? One reply from you and the ladder stops.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Pricing</h2>
+  <div class="price-table">
+    <div class="price-row"><span class="name">Free trial</span><span class="desc">7 days, full features, no card needed</span><span class="amt">₹0</span></div>
+    <div class="price-row"><span class="name">Starter</span><span class="desc">3 invoices tracked at a time</span><span class="amt">₹199/mo</span></div>
+    <div class="price-row"><span class="name">Unlimited</span><span class="desc">No limit on tracked invoices</span><span class="amt">₹499/mo</span></div>
+  </div>
+  <p class="trial-note">One recovered invoice pays for years of this. Payment link arrives by email before your trial ends.</p>
+</section>
+
+<section id="start">
+  <h2>Start your free trial</h2>
+  <form id="regform" novalidate>
+    <label for="name">Your name</label>
+    <input id="name" name="name" type="text" autocomplete="name" placeholder="Priya Sharma">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+    <button type="submit" id="regbtn">Start 7-day free trial</button>
+    <div class="msg" id="regmsg" role="status"></div>
+  </form>
+  <p class="fine">You'll get a welcome email with a link to add your first invoice. No card required for the trial. We send reminders only for invoices you add, and never market to your clients.</p>
+</section>
+
+<footer>
+  Invoice Follow-Up is a Papagye AI product · Nisista Private Limited, India · Questions: papagye.ai@gmail.com
+</footer>
+</div>
+
+<script>
+const WEBHOOK = 'https://shubham-wedding-ai.app.n8n.cloud/webhook/papagye-ifb';
+const form = document.getElementById('regform');
+const btn = document.getElementById('regbtn');
+const msg = document.getElementById('regmsg');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  const name = document.getElementById('name').value.trim();
+  msg.className = 'msg';
+  if (!email || !email.includes('@')) { msg.className='msg err'; msg.textContent='Enter a valid email to start.'; return; }
+  btn.disabled = true; btn.textContent = 'Starting…';
+  try {
+    const r = await fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ action:'register', email, name }) });
+    const d = await r.json().catch(()=>({}));
+    if (d && d.ok) {
+      msg.className='msg ok';
+      msg.textContent='Trial started. Check your inbox (and spam folder) for the welcome email with your invoice link.';
+      form.reset();
+    } else {
+      msg.className='msg err';
+      msg.textContent=(d && d.error) ? d.error : 'Something went wrong. Try again, or email papagye.ai@gmail.com.';
+    }
+  } catch (err) {
+    msg.className='msg err';
+    msg.textContent='Could not reach the server. Try again in a minute, or email papagye.ai@gmail.com.';
+  }
+  btn.disabled = false; btn.textContent = 'Start 7-day free trial';
+});
+</script>
+</body>
+</html>
