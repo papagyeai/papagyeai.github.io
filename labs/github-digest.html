@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily GitHub Trending Digest by Email — join the waitlist</title><meta name="description" content="One daily email with the top trending GitHub repos in your languages — no doomscrolling. Join the free waitlist.">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>:root{--paper:#FAFAF7;--ink:#1C2321;--ledger:#2B4C7E;--mut:#6E736C;--line:#D9DAD2;--card:#FFF}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:20px}.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:34px;max-width:480px}.logo{font-family:'Fraunces',serif;font-weight:700;margin-bottom:20px;font-size:.95rem}.logo span{color:var(--ledger)}h1{font-family:'Fraunces',serif;font-weight:700;font-size:1.55rem;line-height:1.2;margin-bottom:10px}p{color:var(--mut);font-size:.95rem;margin-bottom:10px}ul{margin:12px 0 16px 18px;color:var(--mut);font-size:.92rem}li{margin-bottom:6px}input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:3px;font:inherit;background:var(--paper);margin-top:6px}button{margin-top:12px;width:100%;background:var(--ledger);color:#fff;border:0;padding:12px;border-radius:3px;font:inherit;font-weight:600;cursor:pointer}.msg{display:none;margin-top:12px;padding:10px;border-radius:3px;font-size:.92rem}.ok{display:block;background:#EAF2EA;color:#25552B}.err{display:block;background:#F7E9E7;color:#C0392B}.fine{font-size:.8rem;margin-top:14px}</style></head>
+<body><div class="card"><div class="logo">Papagye <span>Labs</span></div>
+<h1>GitHub trending, in one daily email.</h1><p>Stop doomscrolling GitHub trending. Get one clean daily digest of the top new repos in the languages you care about — stars, one-line summary, link. That's it.</p><ul><li>Pick your languages once</li><li>One email a day, 60-second read</li><li>Unsubscribe anytime</li></ul><p><b style='color:var(--ink)'>Join the free waitlist</b> — launching soon.</p>
+<input id="em" type="email" placeholder="you@example.com"><button id="join">Join the waitlist</button><div class="msg" id="m"></div>
+<p class="fine">A Papagye Labs experiment. Only launch emails, no spam. papagye.ai@gmail.com</p></div>
+<script>
+const W='https://shubham-wedding-ai.app.n8n.cloud/webhook/papagye-ifb';
+const em=document.getElementById('em'),b=document.getElementById('join'),m=document.getElementById('m');
+b.addEventListener('click',async()=>{const v=em.value.trim();m.className='msg';
+if(!v.includes('@')){m.className='msg err';m.textContent='Enter a valid email.';return;}
+b.disabled=true;
+try{await fetch(W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'event',page:'/labs/github-digest',event:'waitlist',session:(sessionStorage.getItem('pg_s')||''),is_test:localStorage.getItem('pg_test')==='1',meta:{email:v,product:'github-digest'}})});
+m.className='msg ok';m.textContent='You are on the list — we email you at launch.';em.value='';}catch(e){m.className='msg err';m.textContent='Server unreachable — try again shortly.';}
+b.disabled=false;});
+(function(){var s=sessionStorage.getItem('pg_s');if(!s){s=Math.random().toString(36).slice(2,10);sessionStorage.setItem('pg_s',s);}var t=/[?&]test=1/.test(location.search)||localStorage.getItem('pg_test')==='1';try{navigator.sendBeacon(W,new Blob([JSON.stringify({action:'event',page:'/labs/github-digest',event:'pageview',ref:document.referrer||'',session:s,is_test:t,meta:{}})],{type:'application/json'}));}catch(x){}})();
+</script></body></html>
