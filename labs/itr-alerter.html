@@ -1,19 +1,118 @@
-<!DOCTYPE html><html lang="en"><head><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=AW-18412912378"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18412912378',{allow_ad_personalization_signals:false});</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ITR & Tax Deadline Alerts for Freelancers — join the waitlist</title><meta name="description" content="Never miss an ITR filing, advance tax or TDS deadline. Simple email alerts before every income-tax due date for Indian freelancers and small businesses. Free waitlist.">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>:root{--paper:#FAFAF7;--ink:#1C2321;--ledger:#2B4C7E;--mut:#6E736C;--line:#D9DAD2;--card:#FFF}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:20px}.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:34px;max-width:480px}.logo{font-family:'Fraunces',serif;font-weight:700;margin-bottom:20px;font-size:.95rem}.logo span{color:var(--ledger)}h1{font-family:'Fraunces',serif;font-weight:700;font-size:1.55rem;line-height:1.2;margin-bottom:10px}p{color:var(--mut);font-size:.95rem;margin-bottom:10px}ul{margin:12px 0 16px 18px;color:var(--mut);font-size:.92rem}li{margin-bottom:6px}input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:3px;font:inherit;background:var(--paper);margin-top:6px}button{margin-top:12px;width:100%;background:var(--ledger);color:#fff;border:0;padding:12px;border-radius:3px;font:inherit;font-weight:600;cursor:pointer}.msg{display:none;margin-top:12px;padding:10px;border-radius:3px;font-size:.92rem}.ok{display:block;background:#EAF2EA;color:#25552B}.err{display:block;background:#F7E9E7;color:#C0392B}.fine{font-size:.8rem;margin-top:14px}</style></head>
-<body><div class="card"><div class="logo">Papagye <span>Labs</span></div>
-<h1>Never miss an income-tax deadline again.</h1><p>ITR filing, advance tax instalments, TDS deposits — one missed date means interest and late fees. We're building dead-simple email alerts:</p><ul><li>ITR filing deadline reminders (with docs checklist)</li><li>Advance tax instalment dates (15 Jun/Sep/Dec/Mar)</li><li>Belated/revised return cutoffs</li></ul><p><b style='color:var(--ink)'>Join the free waitlist</b> — first 100 get a year free at launch.</p>
-<input id="em" type="email" placeholder="you@example.com"><button id="join">Join the waitlist</button><div class="msg" id="m"></div>
-<p class="fine">A Papagye Labs experiment. Only launch emails, no spam. papagye.ai@gmail.com</p></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=AW-18412912378"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18412912378',{allow_ad_personalization_signals:false});</script><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITR & GST Deadline Email Alerts — Join Waitlist | Papagye</title>
+<meta name="description" content="Never miss an ITR, GST or TDS filing deadline. Auto email reminders, ₹299/yr. Early access waitlist open.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f9fafb;color:#1a1a1a;line-height:1.6}
+.hero{background:#1e3a5f;color:#fff;padding:56px 24px 48px;text-align:center}
+.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;margin-bottom:12px}
+.hero p{font-size:1.05rem;opacity:.88;max-width:540px;margin:0 auto 24px}
+.badge{display:inline-block;background:#f59e0b;color:#1a1a1a;font-weight:700;font-size:.8rem;padding:4px 12px;border-radius:999px;margin-bottom:20px;letter-spacing:.04em}
+.price-tag{font-size:1.1rem;font-weight:600;margin-bottom:28px;opacity:.95}
+.cta-btn{display:inline-block;background:#f59e0b;color:#1a1a1a;font-weight:700;font-size:1rem;padding:14px 32px;border-radius:8px;text-decoration:none;transition:opacity .2s}
+.cta-btn:hover{opacity:.88}
+.section{padding:40px 24px;max-width:680px;margin:0 auto}
+.section h2{font-size:1.3rem;font-weight:700;margin-bottom:16px;color:#1e3a5f}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:24px 0}
+.feat{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:20px 16px;text-align:center}
+.feat .icon{font-size:2rem;margin-bottom:8px}
+.feat strong{display:block;font-size:.95rem;color:#1e3a5f}
+.feat span{font-size:.85rem;color:#555}
+.deadlines{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:24px;margin:16px 0}
+.deadlines table{width:100%;border-collapse:collapse;font-size:.9rem}
+.deadlines th{text-align:left;padding:6px 8px;color:#6b7280;font-weight:600;border-bottom:1px solid #e5e7eb}
+.deadlines td{padding:6px 8px;border-bottom:1px solid #f3f4f6}
+.waitlist-box{background:#fffbeb;border:1px solid #f59e0b;border-radius:10px;padding:28px;text-align:center;margin:32px 0}
+.waitlist-box h3{font-size:1.15rem;font-weight:700;color:#1e3a5f;margin-bottom:8px}
+.waitlist-box p{font-size:.9rem;color:#555;margin-bottom:20px}
+.form-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.form-row input{flex:1;min-width:200px;padding:12px 14px;border:1px solid #d1d5db;border-radius:8px;font-size:.95rem}
+.form-row button{background:#1e3a5f;color:#fff;font-weight:700;padding:12px 24px;border:none;border-radius:8px;cursor:pointer;font-size:.95rem}
+.form-row button:hover{opacity:.88}
+.honesty-note{font-size:.78rem;color:#6b7280;margin-top:10px}
+.faq{margin:16px 0}
+.faq details{border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;margin-bottom:8px;background:#fff}
+.faq summary{font-weight:600;cursor:pointer;color:#1e3a5f}
+.faq p{font-size:.9rem;color:#555;margin-top:8px}
+footer{text-align:center;padding:32px 24px;font-size:.8rem;color:#9ca3af}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">EARLY ACCESS — WAITLIST OPEN</div>
+  <h1>Never Miss an ITR, GST or TDS Deadline Again</h1>
+  <p>Auto email reminders before every filing deadline — ITR, quarterly GST, TDS returns, and advance tax dates. Set once, stay compliant.</p>
+  <div class="price-tag">₹299/year &nbsp;·&nbsp; Email alerts &nbsp;·&nbsp; No CA needed</div>
+  <a href="#waitlist" class="cta-btn">Join Waitlist — Free Early Access</a>
+</div>
+
+<div class="section">
+  <h2>What you get when we launch</h2>
+  <div class="features">
+    <div class="feat"><div class="icon">📅</div><strong>ITR Reminders</strong><span>July 31, Oct 31 & belated deadlines</span></div>
+    <div class="feat"><div class="icon">📊</div><strong>GST Alerts</strong><span>Monthly GSTR-1, GSTR-3B & quarterly dates</span></div>
+    <div class="feat"><div class="icon">🧾</div><strong>TDS Deadlines</strong><span>Quarterly TDS return due dates</span></div>
+    <div class="feat"><div class="icon">💰</div><strong>Advance Tax</strong><span>Jun 15, Sep 15, Dec 15, Mar 15 alerts</span></div>
+  </div>
+
+  <div class="deadlines">
+    <table>
+      <thead><tr><th>Deadline</th><th>Type</th><th>Penalty if missed</th></tr></thead>
+      <tbody>
+        <tr><td>July 31</td><td>ITR (non-audit)</td><td>Up to ₹5,000 late fee</td></tr>
+        <tr><td>Oct 31</td><td>ITR (audit)</td><td>Interest + penalty</td></tr>
+        <tr><td>Monthly 11th</td><td>GSTR-1</td><td>₹50/day late fee</td></tr>
+        <tr><td>Monthly 20th</td><td>GSTR-3B</td><td>₹50/day + interest 18% p.a.</td></tr>
+        <tr><td>Quarterly 31st</td><td>TDS Return</td><td>₹200/day (Section 234E)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 style="margin-top:32px">Why a reminder tool?</h2>
+  <p style="font-size:.95rem;color:#444;margin-bottom:16px">India's tax calendar has 40+ dates across ITR, GST and TDS. Missing one date can cost ₹5,000–₹10,000 in late fees and interest. A CA retainer costs ₹5,000–₹15,000/year just for compliance reminders. This tool does exactly that — for ₹299/year.</p>
+
+  <div class="faq">
+    <h2 style="margin-bottom:12px">FAQ</h2>
+    <details><summary>Is this live right now?</summary><p>Not yet — we are building it. Join the waitlist and you will be among the first to access it at the early-access price of ₹299/yr before we raise pricing.</p></details>
+    <details><summary>What does ₹299/year cover?</summary><p>All ITR, GST (GSTR-1, GSTR-3B, quarterly), TDS return, and advance tax email reminders for one financial year. No hidden costs.</p></details>
+    <details><summary>Do I need a CA or accountant?</summary><p>No. This is a reminder tool only — it does not file anything on your behalf. You still file; we make sure you never forget the date.</p></details>
+    <details><summary>Which deadlines are covered?</summary><p>ITR (July 31, Oct 31, belated Dec 31), monthly GST dates, quarterly TDS return dates, and four advance tax instalments. The full calendar will be shared with waitlist members before launch.</p></details>
+    <details><summary>Is my email safe?</summary><p>Your email is used only to send deadline reminders. We do not sell or share it. You can unsubscribe any time.</p></details>
+  </div>
+</div>
+
+<div class="section" id="waitlist">
+  <div class="waitlist-box">
+    <h3>Join the Early Access Waitlist</h3>
+    <p>Be first to know when we launch. Waitlist members get early access at the locked-in price of <strong>₹299/year</strong>.</p>
+    <div class="form-row"><input id="em" type="email" placeholder="your@email.com" required autocomplete="email"><button id="join" type="button">Join Waitlist</button></div><div class="msg" id="m" style="display:none;margin-top:10px;padding:10px;border-radius:8px;font-size:.9rem"></div>
+    <p class="honesty-note">No payment now. We will email you when early access opens. Unsubscribe any time.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Papagye AI &nbsp;·&nbsp; A product by <a href="https://papagye.com" style="color:#9ca3af">papagye.com</a></p>
+  <p style="margin-top:6px">This tool sends reminder emails only. It does not file taxes or provide tax advice. Consult a qualified CA for compliance decisions.</p>
+</footer>
+
 <script>
 const W='https://shubham-wedding-ai.app.n8n.cloud/webhook/papagye-ifb';
 const em=document.getElementById('em'),b=document.getElementById('join'),m=document.getElementById('m');
-b.addEventListener('click',async()=>{const v=em.value.trim();m.className='msg';
-if(!v.includes('@')){m.className='msg err';m.textContent='Enter a valid email.';return;}
+function show(t,ok){m.style.display='block';m.style.background=ok?'#EAF2EA':'#F7E9E7';m.style.color=ok?'#25552B':'#C0392B';m.textContent=t;}
+b.addEventListener('click',async()=>{const v=em.value.trim();m.style.display='none';
+if(!v.includes('@')){show('Enter a valid email.',false);return;}
 b.disabled=true;
 try{await fetch(W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'event',page:'/labs/itr-alerter',event:'waitlist',session:(sessionStorage.getItem('pg_s')||''),is_test:localStorage.getItem('pg_test')==='1',meta:{email:v,product:'itr-alerter'}})});
-m.className='msg ok';m.textContent='You are on the list — we email you at launch.';em.value='';}catch(e){m.className='msg err';m.textContent='Server unreachable — try again shortly.';}
+try{if(window.gtag&&window.PG_CONV_LABEL){gtag('event','conversion',{'send_to':'AW-18412912378/'+window.PG_CONV_LABEL});}}catch(x){}
+show('You are on the list — we email you when early access opens.',true);em.value='';}catch(e){show('Server unreachable — try again shortly.',false);}
 b.disabled=false;});
-(function(){var s=sessionStorage.getItem('pg_s');if(!s){s=Math.random().toString(36).slice(2,10);sessionStorage.setItem('pg_s',s);}var t=/[?&]test=1/.test(location.search)||localStorage.getItem('pg_test')==='1';try{navigator.sendBeacon(W,new Blob([JSON.stringify({action:'event',page:'/labs/itr-alerter',event:'pageview',ref:document.referrer||'',session:s,is_test:t,meta:{}})],{type:'application/json'}));}catch(x){}})();
-</script></body></html>
+(function(){var s=sessionStorage.getItem('pg_s');if(!s){s=Math.random().toString(36).slice(2,10);sessionStorage.setItem('pg_s',s);}if(/[?&]test=1/.test(location.search))localStorage.setItem('pg_test','1');var t=localStorage.getItem('pg_test')==='1';try{navigator.sendBeacon(W,new Blob([JSON.stringify({action:'event',page:'/labs/itr-alerter',event:'pageview',ref:document.referrer||'',session:s,is_test:t,meta:{}})],{type:'application/json'}));}catch(x){}})();
+</script>
+
+</body>
+</html>
