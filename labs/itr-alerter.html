@@ -48,7 +48,7 @@ footer{text-align:center;padding:32px 24px;font-size:.8rem;color:#9ca3af}
     <a href="#waitlist" id="hero-cta" style="display:inline-block;background:#22c55e;color:#04240f;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:8px;font-size:16px">Join the free waitlist</a>
   </div>
 </div>
-<script>document.addEventListener("DOMContentLoaded",function(){var c=document.getElementById("hero-cta");if(!c)return;c.addEventListener("click",function(){try{if(typeof beacon==="function")beacon("hero_cta_click",{});}catch(e){}setTimeout(function(){var e=document.getElementById("em");if(e)e.focus();},400);});});</script>
+<script>document.addEventListener("DOMContentLoaded",function(){var c=document.getElementById("hero-cta");if(!c)return;c.addEventListener("click",function(){try{var W='https://shubham-wedding-ai.app.n8n.cloud/webhook/papagye-ifb';var s=sessionStorage.getItem('pg_s')||'nos';var t=localStorage.getItem('pg_test')==='1';var b={action:'event',page:'/labs/itr-alerter',event:'hero_cta_click',ref:document.referrer||'',session:s,is_test:t,meta:{}};if(navigator.sendBeacon){navigator.sendBeacon(W,new Blob([JSON.stringify(b)],{type:'application/json'}));}else{fetch(W,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});}}catch(e){}setTimeout(function(){var e=document.getElementById("em");if(e)e.focus();},400);});});</script>
 
 
 <div class="hero">
