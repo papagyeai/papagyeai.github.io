@@ -59,6 +59,7 @@ button:disabled{opacity:.6;cursor:wait}
   </div>
   <label for="due_date">Due date</label>
   <input id="due_date" type="date" required>
+  <label style="display:flex;gap:8px;align-items:flex-start;font-weight:500;font-size:.88rem;margin-top:14px"><input id="is_msme" type="checkbox" style="width:auto;margin:3px 0 0"> <span>I am Udyam-registered as a micro or small enterprise <span style="color:var(--mut);font-weight:400">— unlocks stronger reminders after day 45 that cite the MSMED Act's statutory interest (only valid for registered MSMEs).</span></span></label>
   <button type="submit" id="invbtn">Track this invoice</button>
   <div class="msg" id="invmsg" role="status"></div>
 </form>
@@ -77,7 +78,8 @@ f.addEventListener('submit', async (e) => {
     client_email: document.getElementById('client_email').value.trim(),
     invoice_number: document.getElementById('invoice_number').value.trim(),
     amount_inr: Number(document.getElementById('amount_inr').value),
-    due_date: document.getElementById('due_date').value
+    due_date: document.getElementById('due_date').value,
+    is_msme: document.getElementById('is_msme').checked
   };
   if(!p.email.includes('@')||!p.client_email.includes('@')||!p.invoice_number||!p.amount_inr||!p.due_date){
     m.className='msg err'; m.textContent='Fill every field — client email, invoice number, amount and due date are all needed.'; return;
