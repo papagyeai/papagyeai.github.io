@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MSME Interest Calculator - What Your Late-Paying Client Owes You | Papagye</title>
+<meta name="description" content="Free MSMED Section 16 interest calculator. Enter your invoice amount and due date to estimate the compound interest a buyer legally owes a registered micro or small enterprise for late payment in India.">
+<link rel="canonical" href="https://papagye.com/tools/msme-interest-calculator.html">
+<meta property="og:title" content="MSME Interest Calculator - What Your Late-Paying Client Owes You">
+<meta property="og:description" content="Estimate the statutory compound interest payable under Section 16 of the MSMED Act, 2006 when a buyer pays a registered micro or small enterprise late.">
+<meta property="og:url" content="https://papagye.com/tools/msme-interest-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18412912378"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18412912378',{allow_ad_personalization_signals:false});</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"MSME Interest Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Estimates statutory compound interest owed under Section 16 of the MSMED Act, 2006 for delayed payments to registered micro and small enterprises in India.","url":"https://papagye.com/tools/msme-interest-calculator.html","publisher":{"@type":"Organization","name":"Papagye","url":"https://papagye.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What interest can an MSME charge for late payment in India?","acceptedAnswer":{"@type":"Answer","text":"Under Section 16 of the MSMED Act, 2006, a buyer who pays a registered micro or small enterprise after the appointed day is liable to pay compound interest, with monthly rests, at three times the bank rate notified by the Reserve Bank of India."}},
+{"@type":"Question","name":"What is the 45 day MSME payment rule?","acceptedAnswer":{"@type":"Answer","text":"Section 15 of the MSMED Act requires a buyer to pay a registered micro or small enterprise on or before the agreed date. Where there is no written agreement the period is 15 days, and an agreed period may not exceed 45 days from the day of acceptance or deemed acceptance."}},
+{"@type":"Question","name":"Do I need Udyam registration to claim MSME interest?","acceptedAnswer":{"@type":"Answer","text":"The statutory interest and the delayed payment remedies under the MSMED Act apply to suppliers registered as micro or small enterprises. A business without that registration can still pursue interest under its contract or the general law, but not the Section 16 statutory rate."}}]}</script>
+<style>
+:root{--ink:#0f172a;--ink2:#475569;--muted:#64748b;--line:#e2e8f0;--bg:#f8fafc;--card:#fff;--brand:#0e7490;--good:#15803d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px 56px}
+header{background:var(--ink);color:#f8fafc;padding:26px 18px}
+header .in{max-width:760px;margin:0 auto}
+h1{font-size:26px;line-height:1.25;margin:0 0 8px}
+header p{margin:0;opacity:.85;font-size:15px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;margin-top:-18px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+label{display:block;font-weight:600;font-size:13px;margin:14px 0 4px}
+input,select{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:7px;font-size:16px;font-family:inherit}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+button{margin-top:18px;width:100%;background:var(--brand);color:#fff;border:0;border-radius:8px;padding:13px;font-size:16px;font-weight:700;cursor:pointer}
+button:hover{background:#0b5f75}
+#out{display:none;margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.big{font-size:32px;font-weight:700;color:var(--good);font-variant-numeric:tabular-nums}
+.lbl{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+td{padding:7px 0;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+h2{font-size:19px;margin:30px 0 8px}
+.note{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;font-size:14px;color:#78350f;margin-top:16px}
+.cta{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:18px;margin-top:26px}
+.cta a{display:inline-block;margin-top:10px;background:var(--good);color:#fff;text-decoration:none;font-weight:700;padding:11px 20px;border-radius:7px}
+footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--brand);margin-right:14px}
+details{margin-top:10px;border-bottom:1px solid var(--line);padding-bottom:10px}
+summary{cursor:pointer;font-weight:600;padding:8px 0}
+</style>
+</head>
+<body>
+<header><div class="in">
+<h1>What does your late-paying client actually owe you?</h1>
+<p>Estimate the compound interest a buyer owes a registered micro or small enterprise under Section 16 of the MSMED Act, 2006.</p>
+</div></header>
+<div class="wrap">
+<div class="card">
+  <div class="grid">
+    <div><label for="amt">Invoice amount (Rs)</label><input id="amt" type="number" min="1" step="1" placeholder="250000"></div>
+    <div><label for="due">Payment was due on</label><input id="due" type="date"></div>
+  </div>
+  <div class="grid">
+    <div><label for="paid">Paid on (leave blank if still unpaid)</label><input id="paid" type="date"></div>
+    <div><label for="rate">RBI bank rate (%)</label><input id="rate" type="number" min="0" step="0.05" value="5.5"></div>
+  </div>
+  <button id="calc" type="button">Calculate what you are owed</button>
+  <div id="out">
+    <div class="lbl">Estimated interest payable to you</div>
+    <div class="big" id="interest">Rs 0</div>
+    <table>
+      <tr><td>Days overdue</td><td id="days">0</td></tr>
+      <tr><td>Statutory rate applied (3 x bank rate)</td><td id="srate">16.50%</td></tr>
+      <tr><td>Compounding</td><td>Monthly rests</td></tr>
+      <tr><td>Invoice principal</td><td id="principal">Rs 0</td></tr>
+      <tr><td><strong>Total now recoverable</strong></td><td id="total"><strong>Rs 0</strong></td></tr>
+    </table>
+    <div class="note" id="disclaim">This is an estimate for your own planning, not legal or financial advice. The statutory rate under Section 16 is three times the bank rate notified by the RBI - check the current bank rate and confirm your Udyam registration status before relying on it or citing it to a buyer.</div>
+  </div>
+</div>
+
+<div class="cta">
+  <strong>Chasing this manually is why it stayed unpaid.</strong>
+  <div style="font-size:15px;color:var(--ink2);margin-top:6px">Papagye emails your client automatically on the due date, then again on day 15, 30 and 45 - from a neutral address, with replies going straight to you. You add the invoice once.</div>
+  <a href="https://papagye.com/add.html" id="cta-link">Add your first invoice free</a>
+</div>
+
+<h2>How the calculation works</h2>
+<p>Section 15 of the MSMED Act requires a buyer to pay a registered micro or small enterprise by the agreed date - and an agreed period cannot exceed 45 days from acceptance. Where no period is agreed, it is 15 days. Miss that date and Section 16 makes the buyer liable for compound interest with monthly rests at three times the RBI bank rate, running from the appointed day until payment.</p>
+<p>This calculator compounds monthly from your due date to the payment date (or to today if the invoice is still unpaid), which is the ordinary reading of "monthly rests". Partial months are pro-rated on a daily basis.</p>
+
+<h2>Common questions</h2>
+<details><summary>Does this apply to every business?</summary><p>The Section 16 statutory rate applies to suppliers registered as micro or small enterprises. Without that registration you can still pursue interest under your contract or general law, but not at this rate.</p></details>
+<details><summary>Can I actually recover this?</summary><p>The liability exists in statute, and MSME Samadhaan facilitation councils exist to hear delayed-payment references. In practice most buyers pay once they understand the exposure - which is why stating the figure early tends to work better than chasing politely for months.</p></details>
+<details><summary>Is the interest taxable or deductible?</summary><p>Interest received is income to you. Separately, Section 43B(h) of the Income Tax Act disallows a buyer deduction for sums owed to micro and small enterprises beyond the MSMED time limit until actually paid - which is often what makes buyers settle before their year end. Confirm specifics with your CA.</p></details>
+
+<footer>
+  <a href="/">Papagye home</a>
+  <a href="/tools/payment-reminder-generator.html">Free reminder generator</a>
+  <a href="/labs/msme-payment-reminder.html">MSME invoice reminders</a>
+  <a href="/labs/whatsapp-order-parser.html">WhatsApp order parser</a>
+  <div style="margin-top:10px">Estimates only - not legal or financial advice.</div>
+</footer>
+</div>
+<script>
+(function(){
+ var EP='https://shubham-wedding-ai.app.n8n.cloud/webhook/papagye-ifb', PAGE='/tools/msme-interest-calculator';
+ function sid(){try{var s=sessionStorage.getItem('pg_s');if(!s){s=Math.random().toString(36).slice(2)+Date.now().toString(36);sessionStorage.setItem('pg_s',s);}return s;}catch(e){return 'nos';}}
+ function isTest(){try{return localStorage.getItem('pg_test')==='1';}catch(e){return false;}}
+ function beacon(ev,meta){try{var b={action:'event',page:PAGE,event:ev,ref:document.referrer||'',session:sid(),is_test:isTest(),meta:meta||{}};
+   var blob=new Blob([JSON.stringify(b)],{type:'application/json'});
+   if(navigator.sendBeacon){navigator.sendBeacon(EP,blob);}else{fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b),keepalive:true});}}catch(e){}}
+ beacon('pageview',{});
+ var fmt=function(n){return 'Rs '+Math.round(n).toLocaleString('en-IN');};
+ document.getElementById('calc').addEventListener('click',function(){
+   var amt=parseFloat(document.getElementById('amt').value||'0');
+   var due=document.getElementById('due').value;
+   var paid=document.getElementById('paid').value;
+   var br=parseFloat(document.getElementById('rate').value||'0');
+   if(!(amt>0)||!due){alert('Enter the invoice amount and the date payment was due.');return;}
+   var d0=new Date(due+'T00:00:00'), d1=paid?new Date(paid+'T00:00:00'):new Date();
+   var days=Math.floor((d1-d0)/86400000);
+   if(days<0){alert('The payment date is before the due date, so no statutory interest has accrued.');return;}
+   var annual=(br*3)/100, monthly=annual/12, months=days/30.4375;
+   var total=amt*Math.pow(1+monthly,months), interest=total-amt;
+   document.getElementById('interest').textContent=fmt(interest);
+   document.getElementById('days').textContent=days.toLocaleString('en-IN');
+   document.getElementById('srate').textContent=(br*3).toFixed(2)+'%';
+   document.getElementById('principal').textContent=fmt(amt);
+   document.getElementById('total').innerHTML='<strong>'+fmt(total)+'</strong>';
+   document.getElementById('out').style.display='block';
+   beacon('calc_run',{days:days,band:amt>=1000000?'10L+':amt>=100000?'1L-10L':'under-1L'});
+ });
+ document.getElementById('cta-link').addEventListener('click',function(){beacon('cta_click',{to:'add'});});
+})();
+</script>
+</body>
+</html>
